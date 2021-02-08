@@ -1,0 +1,33 @@
+.commentRowText {
+  color: blue;
+  text-align: right;
+  cursor: pointer;
+
+  &.empty {
+    color: rgba(148, 148, 148, 0.747);
+  }
+}
+
+.commentItem {
+  margin: 10px 15px 25px 15px;
+  display: flex;
+  align-items: center;
+
+  .commentReplyIcon {
+    font-size: 30px;
+    margin-right: 20px;
+    flex: 0 0 auto;
+  }
+
+  .posterName {
+    font-weight: bold;
+    font-size: 110%;
+    margin-bottom: 3px;
+  }
+
+  .posterEmail {
+    font-style: italic;
+    margin-bottom: 10px;
+    font-size: 90%;
+  }
+}

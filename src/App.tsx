@@ -1,13 +1,17 @@
 import React from 'react';
-import 'App.css';
+import { hot } from 'react-hot-loader/root';
+import 'App.scss';
 import { PostsViewer } from 'components/PostsViewer';
+import { PageHeader } from 'components/PageHeader';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className='App'>
+      <PageHeader />
+
       <PostsViewer />
     </div>
   );
-}
+};
 
-export default App;
+export default process.env.NODE_ENV === 'development' ? hot(App) : App;
