@@ -7,6 +7,7 @@ import React, { useEffect } from 'react';
 import { DispatchProp, connect } from 'react-redux';
 import { RootState } from 'reducers/root.reducer';
 import { postsSelector } from 'selectors/posts.selector';
+import { BsPersonSquare } from 'react-icons/bs';
 
 interface PostsViewerProps extends DispatchProp {
   posts: Post[];
@@ -27,9 +28,25 @@ const PostsViewer: React.FC<PostsViewerProps> = props => {
 
   const renderPosts = () => posts.map((post: Post) => <PostItem key={`post-${post.id}`} post={post} />);
 
+  const renderContactSection = () => {
+    return (
+      <div className='contactContainer'>
+        <div className='bioSection'>
+          <BsPersonSquare className='profilePicture' />
+          <div className='nameSection'>
+            <div className='name'>Ian King</div>
+            <div className='positionTitle'>Senior Talky Person</div>
+            <div className='email'>king.ian.ilk@gmail.com</div>
+          </div>
+        </div>
+        <div className='bioQuote'>"Always be yourself. Unless you can be Batman. Then you should always be Batman."</div>
+      </div>
+    );
+  };
+
   return (
     <div className='postsViewer'>
-      <div className='postForm'>Form</div>
+      <div className='postForm'>{renderContactSection()}</div>
       <div className='postList'>{renderPosts()}</div>
     </div>
   );

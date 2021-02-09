@@ -1,15 +1,17 @@
 import 'components/CommentsRow/CommentsRow.scss';
-import { Post, Comment } from 'appTypes';
+import { Comment } from 'appTypes';
 import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
 import { BsArrowReturnRight } from 'react-icons/bs';
+import { CommentInput } from 'components/CommentInput';
 
 interface CommentsRowProps {
   comments?: Comment[];
+  postId: number;
 }
 
 const CommentsRow: React.FC<CommentsRowProps> = props => {
-  const { comments } = props;
+  const { comments, postId } = props;
 
   const [showComments, setShowComments] = useState(false);
 
@@ -25,8 +27,8 @@ const CommentsRow: React.FC<CommentsRowProps> = props => {
     );
   }
 
-  const renderComments = () =>
-    comments.map((comment: Comment) => (
+  const renderComments = () => {
+    const commentsList = comments.map((comment: Comment) => (
       <div className='commentItem' key={`comment-${comment.postId}-${comment.id}`}>
         <BsArrowReturnRight className='commentReplyIcon' />
         <div className='commentText'>
@@ -36,6 +38,14 @@ const CommentsRow: React.FC<CommentsRowProps> = props => {
         </div>
       </div>
     ));
+
+    return (
+      <>
+        {commentsList}
+        <CommentInput postId={postId} />
+      </>
+    );
+  };
 
   return (
     <div className='commentsContainer'>

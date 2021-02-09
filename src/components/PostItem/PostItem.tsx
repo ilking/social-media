@@ -19,7 +19,7 @@ const PostItem: React.FC<PostItemProps> = props => {
     <div className='postContainer'>
       <div className='postTitleRow'>{post.title}</div>
       <div className='postBodyRow'>{post.body}</div>
-      <CommentsRow comments={post.comments} />
+      <CommentsRow comments={post.comments} postId={post.id} />
     </div>
   );
 };
