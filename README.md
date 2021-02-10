@@ -1,46 +1,27 @@
-# Getting Started with Create React App
+# Objective
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Build a mock social media website using React + redux
 
-## Available Scripts
+# Setup
 
-In the project directory, you can run:
+Install with `npm i`
 
-### `npm start`
+# Run
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> npm start
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Design choices
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Uses functional react and hooks over classes for ease of reading, performance boost.
+- Redux for shared state management
+- Reselect for memoized expensive caclulations (getting comments of a particular post).
+  - Using Redux for state, Middleware for all API calls, and [Reselect](https://www.npmjs.com/package/reselect) for reading from redux allows for very easy seperation of concerns and keeps most component files very thin.
+  - If I were to implement unit tests here, I would start by writing tests around the selectors.
+- scss instead of vanilla css because its just better.
+- Opted for bulk fetching comments and posts at startup instead of fetching in chunks for simplicity and because
+  - this is a very small app and simplicity makes for easier reading
+  - the api is highly reliable and available
+  - **If either of these conditions were not true, I'd have started by lazy loading comments only as they were needed for each open post. If performance was still a concern, I'd have used pagination to retrieve posts in chunks. API docs indicate that these features are supported.**
+  - If I did implement a lazy loading strategy, I would fetch data from redux using [Re-reselct](https://www.npmjs.com/package/re-reselect) as it allows multiple results to be stored by a selector.
+- Chose not to implement any particular react UI library. I'm most familiar with Antd, but it would be overkill here and doing the html/scss manually better demonstrates my abilities.
+- Chose not to use a library to handle the comment submission form for simplicity.
