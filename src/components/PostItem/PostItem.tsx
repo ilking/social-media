@@ -2,7 +2,7 @@ import 'components/PostItem/PostItem.scss';
 import { Post } from 'appTypes';
 import { isEmpty } from 'lodash';
 import React from 'react';
-import CommentsRow from 'components/CommentsRow/CommentsRow';
+import CommentsRow from 'components/CommentsRow';
 
 interface PostItemProps {
   post: Post;
